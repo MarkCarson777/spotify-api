@@ -1,5 +1,5 @@
-import "./App.css";
+import { Login } from "./components/Login";
 
 export function App() {
-  return <>App</>;
+  return <Login />;
 }
