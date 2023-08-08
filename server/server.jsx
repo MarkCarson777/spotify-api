@@ -10,7 +10,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post("/refresh", (req, res) => {
-  console.log("hi");
   const refreshToken = req.body.refreshToken;
   const spotifyApi = new SpotifyWebApi({
     redirectUri: "http://localhost:5173",
@@ -63,8 +62,7 @@ app.post("/login", (req, res) => {
         expiresIn: expires_in,
       });
     })
-    .catch((error) => {
-      console.log("error", error);
+    .catch(() => {
       res.sendStatus(400);
     });
 });
