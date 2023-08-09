@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export function Playlist({ playlist }) {
   return (
     <div className="flex items-center p-2 border w-fit rounded-lg">
@@ -17,3 +19,7 @@ export function Playlist({ playlist }) {
     </div>
   );
 }
+
+Playlist.propTypes = {
+  playlist: PropTypes.object.isRequired,
+};
