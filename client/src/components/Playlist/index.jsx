@@ -1,3 +1,3 @@
-export function Playlist() {
-  return <div>Playlist</div>;
+export function Playlist({ playlist }) {
+  return <div>{playlist.name}</div>;
 }
