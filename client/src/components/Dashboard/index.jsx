@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 import { useAuth } from "../../hooks/useAuth";
 
@@ -39,7 +40,7 @@ export function Dashboard({ code }) {
   }, [accessToken]);
 
   return (
-    <div>
+    <>
       <form>
         <input
           className="border border-red-500"
@@ -50,6 +51,10 @@ export function Dashboard({ code }) {
         />
       </form>
       <Playlists playlists={playlists} />
-    </div>
+    </>
   );
 }
+
+Dashboard.propTypes = {
+  code: PropTypes.string.isRequired,
+};
