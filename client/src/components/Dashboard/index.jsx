@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 
 import { useAuth } from "../../hooks/useAuth";
 
+import { Playlists } from "../../containers/Playlists";
+
 import SpotifyWebApi from "spotify-web-api-node";
 
 const spotifyApi = new SpotifyWebApi({
@@ -11,6 +13,7 @@ const spotifyApi = new SpotifyWebApi({
 export function Dashboard({ code }) {
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [playlists, setPlaylists] = useState([]);
   const accessToken = useAuth(code);
 
   useEffect(() => {
@@ -22,24 +25,31 @@ export function Dashboard({ code }) {
     if (!search) return setSearchResults([]);
     if (!accessToken) return;
 
-    spotifyApi.getUserPlaylists("marky_mark_777").then((res) => {
-      console.log(res);
-    });
-
     spotifyApi.searchTracks(search).then((res) => {
       console.log(res);
     });
   }, [search, accessToken]);
 
+  useEffect(() => {
+    if (!accessToken) return;
+
+    spotifyApi.getUserPlaylists("marky_mark_777").then((res) => {
+      setPlaylists(res.body.items);
+    });
+  }, [accessToken]);
+
   return (
-    <form>
-      <input
-        className="border border-red-500"
-        type="text"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        placeholder="Search..."
-      />
-    </form>
+    <div>
+      <form>
+        <input
+          className="border border-red-500"
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search..."
+        />
+      </form>
+      <Playlists playlists={playlists} />
+    </div>
   );
 }

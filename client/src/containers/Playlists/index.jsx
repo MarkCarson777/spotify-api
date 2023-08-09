@@ -1,3 +1,4 @@
-export function Playlists() {
+export function Playlists({ playlists }) {
+  console.log(playlists);
   return <div>Playlists</div>;
 }
