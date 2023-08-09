@@ -26,17 +26,27 @@ export function Dashboard({ code }) {
     if (!search) return setSearchResults([]);
     if (!accessToken) return;
 
-    spotifyApi.searchTracks(search).then((res) => {
-      console.log(res);
-    });
+    spotifyApi
+      .searchTracks(search)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log("searchTracks", err);
+      });
   }, [search, accessToken]);
 
   useEffect(() => {
     if (!accessToken) return;
 
-    spotifyApi.getUserPlaylists("marky_mark_777").then((res) => {
-      setPlaylists(res.body.items);
-    });
+    spotifyApi
+      .getUserPlaylists("marky_mark_777")
+      .then((res) => {
+        setPlaylists(res.body.items);
+      })
+      .catch((err) => {
+        console.log("getUserPlaylists", err);
+      });
   }, [accessToken]);
 
   return (
