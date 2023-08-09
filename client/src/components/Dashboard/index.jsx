@@ -22,6 +22,10 @@ export function Dashboard({ code }) {
     if (!search) return setSearchResults([]);
     if (!accessToken) return;
 
+    spotifyApi.getUserPlaylists("marky_mark_777").then((res) => {
+      console.log(res);
+    });
+
     spotifyApi.searchTracks(search).then((res) => {
       console.log(res);
     });
