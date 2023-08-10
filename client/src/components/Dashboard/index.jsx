@@ -1,11 +1,14 @@
+// React
 import { useState, useEffect } from "react";
+// Third Party
 import PropTypes from "prop-types";
-
-import { useAuth } from "../../hooks/useAuth";
-
-import { Playlists } from "../../containers/Playlists";
-
 import SpotifyWebApi from "spotify-web-api-node";
+// Hooks
+import { useAuth } from "../../hooks/useAuth";
+// Components
+import { Navigation } from "../../components/Navigation";
+// Containers
+import { Playlists } from "../../containers/Playlists";
 
 const spotifyApi = new SpotifyWebApi({
   clientId: "5b520526277442868e441edb991d633f",
@@ -51,6 +54,7 @@ export function Dashboard({ code }) {
 
   return (
     <>
+      <Navigation />
       <form>
         <input
           className="border border-red-500"
