@@ -5,8 +5,6 @@ import PropTypes from "prop-types";
 import SpotifyWebApi from "spotify-web-api-node";
 // Hooks
 import { useAuth } from "../../hooks/useAuth";
-// Components
-import { Navigation } from "../../components/Navigation";
 // Containers
 import { Playlists } from "../../containers/Playlists";
 
@@ -54,7 +52,6 @@ export function Dashboard({ code }) {
 
   return (
     <>
-      <Navigation />
       <form>
         <input
           className="border border-red-500"
@@ -70,5 +67,5 @@ export function Dashboard({ code }) {
 }
 
 Dashboard.propTypes = {
-  code: PropTypes.string.isRequired,
+  code: PropTypes.string,
 };
